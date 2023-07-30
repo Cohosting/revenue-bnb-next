@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'GTBold';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'GTBoldOblique';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Bold-Oblique.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'GTMedium';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GTLight';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GTRegular';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'GTMediumOblique';
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium-Oblique.ttf')
+    format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'GT Eesti Text Light';
+  src: url('./fonts/GT-Eesti-Text-Light.ttf')
+    format('truetype');
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+
+@media screen and (max-width: 450px) {
+  .hero-title {
+    font-size: 20px !important;
+  }
+}
+
+.feather-icon {
+  color: rgba(92, 171, 140, 0.3);
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
