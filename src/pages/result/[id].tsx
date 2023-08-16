@@ -410,12 +410,12 @@ const Result: FC<any> = ({ data }) => {
                             </Box>
 
                     <Price
-                                average={results.average}
-                                professional={results.percentile75}
+                                average={results.last_12_months_summary.quartiles['50th_percentile']}
+                                professional={results.last_12_months_summary.quartiles['90th_percentile']}
                     />
                     <Breakdown
                         monthlyData={
-                                    results.monthly_average_granuar_data
+                                    results.monthly_summary
                         }
                     />
                     <Box marginTop={'40px'} paddingBottom={'20px'} fontSize={'15px'} color={'#6B6B6B'} fontWeight={500} fontFamily={'GT Eesti Text Light'}>

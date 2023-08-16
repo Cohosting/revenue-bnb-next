@@ -116,17 +116,10 @@ export const fetchData = async (id) => {
       const data = response.message;
 
  
-
-
-      // If document exists, we update the annualAndMonthlyData field
-      // If not, we create the document and set the field
-      await setDoc(docRef, { ...docSnap.data(), 
-        average: data.average,
-        dates: data.dates,
-        monthly_average_granuar_data: data.monthly_average_granuar_data,
-        percentile25: data.percentile25,
-        percentile50: data.percentile50,
-        percentile75: data.percentile75,
+      await setDoc(docRef, { 
+        ...docSnap.data(), 
+        ...data,
+   
         isRequested: true
 
 

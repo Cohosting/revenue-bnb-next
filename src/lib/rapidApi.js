@@ -13,20 +13,21 @@ import { db } from './firebase';
         try {
           const options = {
             method: 'GET',
-            url: 'https://airbnb-income-prediction.p.rapidapi.com/getIncomeHistory',
+            url: 'https://7sdr27znoa.execute-api.us-east-2.amazonaws.com/v2/getIncomeHistory',
             params: {
-              coordinate: `(${coordinates[1]}, ${coordinates[0]})`,
-              countryCode: 'US',
-              bedrooms: Math.floor(bedrooms),
-              bathrooms: Math.floor(bathrooms),
-              hasPool: false,
-              radiusInMeter: 5000,
+                coordinate: `(${coordinates[1]}, ${coordinates[0]})`,
+                bedrooms: Math.floor(bedrooms),
+                bathrooms: Math.floor(bathrooms),
+                apiResponseType: 'estimator_summary_monthly',
+                returnQuartiles: 'true'
             },
             headers: {
-              'X-RapidAPI-Host': 'airbnb-income-prediction.p.rapidapi.com',
-              'X-RapidAPI-Key': '2296d55f65mshf88a20cd74a3c69p17aa1ejsnae76cc48da6b'
+                'x-api-key': 'jn719ivtlxoi9CnmHMX27gkCtg9qM2ejTw1MHYTQ',
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InN1YmhheWFuK2NvaG9zdGluQGFpcmJ0aWNzLmNvbSJ9.thRTb4PqjmHaV_0GcK8rfV-6RU7JZVbxdtfqyqDjodg'
             }
-          };
+        };
+
+
       
           const response = await axios.request(options);
           console.log({response});

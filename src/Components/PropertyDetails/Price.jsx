@@ -97,7 +97,7 @@ const Price = ({ average, professional }) => {
         <DetailBox
           yearly={average.revenue * 12}
           monthly={average.occupancy_rate}
-          nightly={average.daily_rate}
+          nightly={average.average_daily_rate}
         />
         <Flex
           justify={'center'}
@@ -136,7 +136,7 @@ const Price = ({ average, professional }) => {
         <DetailBox
           yearly={professional.revenue * 12}
           monthly={professional.occupancy_rate}
-          nightly={professional.daily_rate}
+          nightly={professional.average_daily_rate}
         />
       </Flex>
     </LayoutBox>

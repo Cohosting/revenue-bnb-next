@@ -170,8 +170,8 @@ const MonthlyData = ({ monthlyData }) => {
               >
 
                 <Months
-                  occupancyRate={monthlyData[key].occupancy_rate}
-                  month={months[idx].month} amount={monthlyData[key].revenue}
+                  occupancyRate={monthlyData[key].average_occupancy_rate}
+                  month={months[idx].month} amount={monthlyData[key].average_revenue}
                 />
               </motion.div>
             ))
