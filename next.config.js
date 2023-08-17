@@ -18,7 +18,6 @@ const nextConfig = {
 }
 
 
-
 // Injected content via Sentry wizard below
 
 
@@ -54,3 +53,5 @@ module.exports = withSentryConfig(
     disableLogger: true,
   }
 );
+
+

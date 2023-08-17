@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import stateProvider from '../context/stateProvider';
 import { db } from '../lib/firebase';
-import { sendConfirmationEmail } from '../lib/Mail';
 import message from '../lotties/message.json';
 
 const Confirmation = ({ values }) => {
@@ -44,8 +43,8 @@ const Confirmation = ({ values }) => {
       await updateDoc(userRef, {
         confirmationCode: random4Number
       })
-      await sendConfirmationEmail('', values.email, random4Number, lastId);
-
+/*       await sendConfirmationEmail('', values.email, random4Number, lastId);
+ */
     } catch (err) {
       console.log(err)
     }

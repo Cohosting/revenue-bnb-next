@@ -210,7 +210,6 @@ const Result: FC<any> = ({ data }) => {
                     <meta name="description" content={`Revenuebnb Vacation Rental revenue prediction for ${data.location}`} />
                     <meta property="og:title" content={`Revenuebnb - ${data.location}`} />
                     <meta property="og:description" content={`Revenuebnb Vacation Rental revenue prediction for ${data.location}`} />
-                    <meta property="og:url" content="https://snipcart.com/" />
                     <meta property="og:type" content="website" />
                 </Head>
             </Box>
