@@ -1,27 +1,28 @@
+import dynamic from 'next/dynamic';
 import { Box, Button, Flex, Progress, Text, useDisclosure } from '@chakra-ui/react';
-import Lottie from 'lottie-react';
 import React, { createContext, FC, useContext, useEffect, useState } from 'react';
 import graph from '../../lotties/graph.json';
-import Schedule from '../../Components/modals/schedule';
 import LogoItem from '../../Components/UI/LogoItem';
 import stateProvider from '../../context/stateProvider';
 import { fetchData, getReportDetails, updateViewCountAndSendWebhook } from '../../lib/reports';
-import Breakdown from '../../Components/Breakdown';
-import Price from '../../Components/PropertyDetails/Price';
-import { AiOutlineArrowLeft } from 'react-icons/ai'
-
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { useCookies } from 'react-cookie';
 import { v4 as uuidv4 } from 'uuid';
-import { useForm, } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AuthContext } from '../../context/authContext';
-import SavvyCal from '../../Components/savvyCall';
-import UserForm from '../../auth/ViewedByAuth';
 import { useLegacyEffect } from './../../hooks/useEffectLegacy';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 
+// Dynamically importing the components
+const Lottie = dynamic(() => import('lottie-react'));
+const Schedule = dynamic(() => import('../../Components/modals/schedule'));
+const Breakdown = dynamic(() => import('../../Components/Breakdown'));
+const Price = dynamic(() => import('../../Components/PropertyDetails/Price'));
+const SavvyCal = dynamic(() => import('../../Components/savvyCall'));
+const UserForm = dynamic(() => import('../../auth/ViewedByAuth'));
 export const ResultContext = createContext(null);
 
 
@@ -33,7 +34,6 @@ const Result: FC<any> = ({ data }) => {
         phone: '',
         "User ID": uuidv4()
     };
-    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true)
     const { control, formState: { errors }, handleSubmit, reset, watch, setValue, } = useForm({ defaultValues });
 
     let watchr = watch(['phone'])

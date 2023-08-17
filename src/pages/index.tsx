@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Box, Button, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useDisclosure, useMediaQuery, useOutsideClick } from '@chakra-ui/react'
-import { FC, useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Header } from './../Components/Header'
 import stateProvider from '../context/stateProvider';
 import { getAddress } from '../lib/mapbox';
@@ -10,16 +10,17 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { BiTargetLock } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go'
 import { MapPin } from 'react-feather';
-import MobileSearch from '../Components/MobileSearch'
 import { AuthModal } from './../Components/modals/AuthModal'
 import { BsCurrencyDollar } from 'react-icons/bs'
 /* @ts-ignore */
 import Slider from "react-slick";
-import SavvyCal from './../Components/savvyCall'
 import { setBaseResultDoc } from './../lib/reports'
 import { useInput } from './../Components/PropertyDetails/PropertyDetails'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../context/authContext';
+import dynamic from 'next/dynamic';
+const MobileSearch = dynamic(() => import('../Components/MobileSearch'));
+const SavvyCal = dynamic(() => import('./../Components/savvyCall'));
 function isEven(n: any) {
   return n % 2 == 0;
 }
