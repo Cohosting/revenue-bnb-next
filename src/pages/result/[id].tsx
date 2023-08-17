@@ -64,22 +64,6 @@ const Result: FC<any> = ({ data }) => {
     const { isError } = error;
     useLegacyEffect(() => {
         console.log('legacy effect run with id', id, currentUser)
-/*         const token = localStorage.getItem('revenuebnb_token');
-        if (!token) {
-            const docRef = doc(db, "reports", id);
-            getDoc(docRef).then((docSnap) => {
-                if (docSnap.exists()) {
-                    setResults(docSnap.data())
-                } else {
-                    console.log("No such document!");
-                }
-                setLoading(false);
-
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            }
-            );
-        } */
         if (!id || !currentUser) {
             console.log('no id or user')
             return;
@@ -261,154 +245,7 @@ const Result: FC<any> = ({ data }) => {
                         <UserForm results={data} />
 
 
-
-                        {/*
-                <Flex justifyContent={'center'} flexDir={'column'} height={'100%'} w={'100%'}>
-                    <Flex alignItems={'center'} justifyContent={'center'} height={'100%'} >
-                        <Flex width={'60%'} justify={'center'} direction='column'>
-
-                            <Text sx={{ ...txtStyles, fontFamily: 'GTMedium ', color: TEXT_COLOR, mt: !isLargerThan768 && '40px' }} textAlign={'center'} fontSize={['35px', '46px']}>                View Annual Revenue Estimate
-
-                            </Text>
-                            <Box >
-                                <Text
-                                    mt={'20px'}
-                                    textAlign={'center'}
-                                    fontSize={'24px'}
-                                    letterSpacing={'.7px'}
-                                    lineHeight='1.1'
-                                    fontFamily={'GTMedium'}
-                                >
-                                    {results.location}
-                                </Text>
-                                <Text mb={5} textAlign={'center'} fontFamily={'GTMedium'}>
-                                    {results.bedrooms} bedrooms · {results.bathrooms} baths
-                                </Text>
-                            </Box>
-
-                            <form onSubmit={handleSubmit(handleClickCookie)} >
-                                <Flex
-                                    direction={isLargerThan768 ? 'row' : 'column'}
-                                    gap={!isLargerThan768 ? '0rem' : '.6rem'}
-                                >
-                                    <Box flex={1}>
-                                        <Controller name="firstName" control={control}
-                                            rules={{ required: 'First name is required.', }}
-                                            render={({ field, fieldState }) => (
-                                                <CustomInput
-                                                    handleChange={handleChange}
-                                                    icon={<BiUserCircle color='rgb(247, 34, 219)' />}
-                                                    // @ts-ignore
-
-                                                    placeholder='First Name'
-                                                    name='firstName'
-                                                    id={field.name} {...field}
-                                                />
-                                            )} />
-                                        {getFormErrorMessage('firstName')}
-
-                                    </Box>
-
-
-                                    <Box flex={1} sx={{
-                                        mt: !isLargerThan768 ? '20px' : '0px',
-                                        w: '100%'
-                                    }}>
-
-                                        <Controller name="lastName" control={control}
-                                            rules={{ required: 'Last name is required.', }}
-                                            render={({ field, fieldState }) => (
-                                                <CustomInput
-                                                    handleChange={handleChange}
-
-                                                    icon={<BiUserCircle color='rgb(247, 34, 219)' />}
-                                                    // @ts-ignore
-
-                                                    placeholder='Last Name'
-                                                    name='lastName'
-                                                    id={field.name} {...field}
-                                                />
-                                            )} />
-                                        {getFormErrorMessage('lastName')}
-
-
-                                    </Box>
-                                </Flex>
-                                <Box my={3} mt={2}>
-                                    <Controller name="email" control={control}
-                                        rules={{ required: 'Email is required.', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address. E.g. example@email.com' } }}
-                                        render={({ field, fieldState }) => (
-                                            <CustomInput
-
-
-                                                handleChange={handleChange}
-
-                                                icon={<BiUserCircle color='rgb(247, 34, 219)' />}
-                                                // @ts-ignore
-
-                                                placeholder='Email'
-                                                name='email'
-                                                id={field.name} {...field}
-                                            />
-                                        )} />
-                                    {getFormErrorMessage('email')}
-
-                                </Box>
-
-
-                                <Flex sx={{
-                                    fontFamily: 'GTMedium',
-                                    borderRadius: '24px',
-                                    border: '2px solid #E2E8F0',
-                                    height: '3.125rem',
-                                    color: 'rgb(80,80,81)',
-                                    transition: 'all 250ms ease 0s',
-                                    _placeholder: {
-                                        color: 'rgb(80,80,81)',
-                                    },
-                                    _hover: { border: '2px solid rgb(163, 223, 230)' },
-                                    _focus: {},
-                                    _active: {},
-                                }} alignItems={'center'}>
-
-                                    <Box p={3}>
-                                        <Flex>
-                                            <Image borderRadius={'100%'} w={'25px'} height={'25px'} src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png?20151118161041' />
-                                            <Text ml={2}>+1</Text>
-                                        </Flex>
-                                    </Box>
-                                    <Input onChange={(e) => {
-
-
-                                        setValue('phone', e.target.value)
-                                        setIsPhoneNumberValid(true)
-                                    }} type={'text'} name="phone" value={formatPhoneNumber(watchr[0])} outline={'none'} border={'none'} _focus={{
-                                        border: 'none',
-                                        outline: 'none'
-                                    }}
-
-                                    />
-
-
-                                </Flex>
-
-                                {
-                                    !isPhoneNumberValid ? (
-
-                                        <Text color={'#ff6565'} fontFamily={'GTMedium'} my={2} >Please input a valid number</Text>
-                                    ) : ''
-                                }
-
-
-                                <Button w={'100%'} type='submit' fontFamily={'GTMedium'} isLoading={isCookiesLoading} mt={4} fontWeight={'400'} bg={'rgb(247, 34, 219)'} color={'white'}  >
-                                    View result
-                                </Button>
-                            </form>
-
-
-                        </Flex>
-                    </Flex>
-                        </Flex>    */}   </>
+                    </>
             ) : !isError ? (
                         <Box bg={'#F6F6F6'} maxW={'1000px'} margin={'0 auto'} >
                     <LogoItem />
@@ -450,6 +287,10 @@ const Result: FC<any> = ({ data }) => {
 };
 
 export async function getServerSideProps(context: any) {
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
     try {
         const data: any = await getReportDetails(context.query.id);
 
