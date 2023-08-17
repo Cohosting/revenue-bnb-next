@@ -1,12 +1,15 @@
+import dynamic from 'next/dynamic';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import FeatherIcon from 'feather-icons-react';
 import React, { useContext } from 'react';
 import stateProvider from './../context/stateProvider';
-import Investment from './Investment';
 import { LayoutBox } from './Layout/LayoutBox';
-import Managers from './Managers';
-import MonthlyData from './MonthlyData';
-import NightlyData from './NightlyData';
+
+// Dynamically importing the components
+const Investment = dynamic(() => import('./Investment'));
+const Managers = dynamic(() => import('./Managers'));
+const MonthlyData = dynamic(() => import('./MonthlyData'));
+const NightlyData = dynamic(() => import('./NightlyData'));
 
 const Breakdown = ({ monthlyData }) => {
   const { selectedName, isAuthenticated } = useContext(stateProvider);

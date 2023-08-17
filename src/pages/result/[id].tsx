@@ -13,8 +13,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AuthContext } from '../../context/authContext';
 import { useLegacyEffect } from './../../hooks/useEffectLegacy';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+
 
 // Dynamically importing the components
 const Lottie = dynamic(() => import('lottie-react'));
@@ -36,10 +35,9 @@ const Result: FC<any> = ({ data }) => {
     };
     const { control, formState: { errors }, handleSubmit, reset, watch, setValue, } = useForm({ defaultValues });
 
-    let watchr = watch(['phone'])
     const router = useRouter();
     const { id } = router.query
-    const { monthlyData, onClose } = useContext(stateProvider);
+    const { onClose } = useContext(stateProvider);
     const { currentUser } = useContext(AuthContext);
     const [results, setResults] = useState({});
     const [loading, setLoading] = useState(true);
@@ -50,7 +48,7 @@ const Result: FC<any> = ({ data }) => {
         isError: false,
         errorMessage: '',
     });
-    const [cookies, setCookie, removeCookie] = useCookies(['hasSubmitForm']);
+    const [cookies,] = useCookies(['hasSubmitForm']);
     const { isOpen, onOpen, onClose: onScheduleClose } = useDisclosure()
 
 
@@ -156,33 +154,6 @@ const Result: FC<any> = ({ data }) => {
         }
     }, [progress]);
 
-
-    let TEXT_COLOR = '#242E43'
-    const txtStyles = {
-        lineHeight: '1.1',
-        letterSpacing: '-2px',
-    };
-
-
-
-    const getFormErrorMessage = (name) => {
-        return errors[name] && <Text color={'#ff6565'} fontFamily={'GTMedium'} my={2} >{errors[name].message}</Text>
-    };
-    let formatPhoneNumber = (str) => {
-        //Filter only numbers from the input
-        let cleaned = ('' + str).replace(/\D/g, '');
-
-        //Check if the input is of correct length
-        let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-
-        if (match) {
-            return '(' + match[1] + ') ' + match[2] + '-' + match[3]
-        };
-
-        return null
-    };
-
-    console.log({ is: (Object.keys(currentUser || {}).length === 0) && !cookies.hasSubmitForm })
     return (
 
         <ResultContext.Provider

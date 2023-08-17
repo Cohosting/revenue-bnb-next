@@ -41,7 +41,9 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.17",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/uuid": "^9.0.0"
+    "@types/uuid": "^9.0.0",
+    "cross-env": "^7.0.3"
   }
 }

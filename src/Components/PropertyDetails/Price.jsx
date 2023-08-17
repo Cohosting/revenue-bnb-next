@@ -12,19 +12,16 @@ import React, { useContext, useState } from 'react';
 import stateProvider from '../../context/stateProvider';
 import { ResultContext } from './../../pages/result/[id]';
 import { LayoutBox } from '../Layout/LayoutBox';
-import ShareModal from '../modals/ShareModal';
 import Share from './../../Images/svgfile/share.svg';
-import { useRouter } from 'next/router';
-import { AiOutlineArrowLeft } from 'react-icons/ai'
+import dynamic from 'next/dynamic';
+const ShareModal = dynamic(() => import('../modals/ShareModal'));
 
 const Price = ({ average, professional }) => {
-  const [isDisabled, setIsDisabled] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { progress, setSelectedName } = useContext(stateProvider);
+  const {  setSelectedName } = useContext(stateProvider);
 
   const { location, bathrooms, bedrooms, guests, } = useContext(ResultContext);
-  let router = useRouter()
   const buttonStyles = {
     fontSize: '16px',
     fontWeight: 'medium',
