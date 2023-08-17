@@ -250,7 +250,9 @@ export default function Home() {
         });
 
       // Immediately navigate, without waiting for the fetch to complete
-      navigate.push(`result/${id}`);
+      window.location.href = `result/${id}`;
+
+     /*  navigate.push(`result/${id}`) */;
     } else if (!CU && isUserSearched) {
       /* Or show the moddal of the auth!!!! */
       setShowAuthModal(true)
