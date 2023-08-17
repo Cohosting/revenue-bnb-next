@@ -125,7 +125,10 @@ export const fetchData = async (id) => {
 
     }, { merge: true });
 
-      return data;
+      return {
+        ...docSnap.data(), 
+        ...data
+      };
     } catch (error) {
       console.error('API request failed:', error);
 

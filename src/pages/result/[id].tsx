@@ -63,6 +63,7 @@ const Result: FC<any> = ({ data }) => {
     };
     const { isError } = error;
     useLegacyEffect(() => {
+        console.log('legacy effect run with id', id, currentUser)
         const token = localStorage.getItem('revenuebnb_token');
         if (!token) {
             /* @ts-ignore */
@@ -84,12 +85,15 @@ const Result: FC<any> = ({ data }) => {
             console.log('no id or user')
             return;
         };
+
+        console.log('Data is about to get fetched')
         fetchData(id)
             .then(fetchedData => {
-                setLoading(false)
+                console.log(`Data fetched`, fetchedData)
                 setResults(fetchedData)
                 /* @ts-ignore */
                 if (fetchedData.isError) {
+                    console.log('Error happend')
                     setError({
                         isError: true,
                         errorMessage: "Unknown error occured"
@@ -100,14 +104,17 @@ const Result: FC<any> = ({ data }) => {
             .catch(err => {
                 console.log({ err });
 
-                setLoading(false)
 
                 setError({
                     isError: true,
                     errorMessage: "Unknown error occured"
                 });
                 onOpen();
+            })
+            .finally(() => {
+                setLoading(false)
             });
+
 
 
         updateViewCountAndSendWebhook(id, currentUser.id, {
