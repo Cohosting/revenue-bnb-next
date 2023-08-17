@@ -178,6 +178,26 @@ const UserForm = ({
         fullName: `${firstName} ${lastName}`,
         userType
       });
+      await fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          results,
+          email,
+          firstName,
+          lastName,
+          phoneNumber,
+          userType,
+          id: ref.id,
+          fullName: `${firstName} ${lastName}`,
+          authSource: 'viewedby',
+          isNewUser: true,
+          existingUser: false,
+          emailVerified: false
+        }),
+      });
     } else {
       const q = query(collection(db, 'users'), where('email', '==', email));
       const querySnapshot = await getDocs(q);
@@ -202,20 +222,17 @@ const UserForm = ({
   };
 
   const handleSubmit = async () => {
-    setSubmitLoading(true); // Set loading state before form submission
-
+    setSubmitLoading(true);
+  
     try {
-      // Compare the entered verification code with the code saved in Firestore
       const q = query(collection(db, 'users'), where('email', '==', email));
       const querySnapshot = await getDocs(q);
-      
-      // Check if user exists
+  
       if (querySnapshot.empty) {
         console.log('No user found with this email.');
         return;
       }
   
-      // If user exists, proceed with verification
       const user = querySnapshot.docs[0].data();
   
       if (user.verificationCode === Number(verificationCode)) {
@@ -223,25 +240,52 @@ const UserForm = ({
         await updateDoc(ref, {
           verificationCode: null,
           emailVerified: true
-        })
-
+        });
+  
+        await fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            results,
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            userType,
+            id: querySnapshot.docs[0].id,
+            fullName: `${firstName} ${lastName}`,
+            authSource: 'viewedby',
+            isNewUser: false,
+            existingUser: true,
+            emailVerified: true
+          }),
+        });
+  
         const token = generateToken(querySnapshot.docs[0].id);
         localStorage.setItem('revenuebnb_token', token);
-
   
-        // If the codes match, proceed with next steps...
         console.log('Verification successful');
         window.location.reload();
       } else {
-        // If the codes do not match, show an error message...
         console.log('Verification failed');
       }
     } catch (error) {
-      // Log any error that occurred during the process
       console.error("Error during verification:", error);
+  
+      // Categorize error by type
+      if (error.message.includes('NetworkError')) {
+        console.log('Network error occurred. Please try again later.');
+      } else if (error.message.includes('Firestore')) {
+        console.log('Database error. Please try again later.');
+      } else {
+        console.log('Unexpected error occurred. Please try again later.');
+      }
+    } finally {
+      // Ensuring that setSubmitLoading is always executed at the end
+      setSubmitLoading(false);
     }
-    setSubmitLoading(false); // Reset loading state after form submission
-
   };
 
   const goBack = () => {

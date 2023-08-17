@@ -203,7 +203,8 @@ export const updateViewCountAndSendWebhook = async (id, userId, commonBody) => {
     // Include the updatedData (with the incremented viewCount and user view counts) in the webhook request
     try {
       await sendWebhookRequest({ ...commonBody, result: {
-        ...updatedData
+        ...updatedData,
+        
       } });
     } catch (error) {
       console.error('Error sending webhook request:', error);

@@ -108,7 +108,9 @@ const Result: FC<any> = ({ data }) => {
 
 
         updateViewCountAndSendWebhook(id, currentUser.id, {
-            requestSentBy: currentUser
+            requestSentBy: currentUser,
+
+
         })
             .catch(err => console.error('Failed to update view count and send webhook:', err));
     }, [id, currentUser]);
