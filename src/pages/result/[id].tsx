@@ -64,9 +64,8 @@ const Result: FC<any> = ({ data }) => {
     const { isError } = error;
     useLegacyEffect(() => {
         console.log('legacy effect run with id', id, currentUser)
-        const token = localStorage.getItem('revenuebnb_token');
+/*         const token = localStorage.getItem('revenuebnb_token');
         if (!token) {
-            /* @ts-ignore */
             const docRef = doc(db, "reports", id);
             getDoc(docRef).then((docSnap) => {
                 if (docSnap.exists()) {
@@ -80,7 +79,7 @@ const Result: FC<any> = ({ data }) => {
                 console.log("Error getting document:", error);
             }
             );
-        }
+        } */
         if (!id || !currentUser) {
             console.log('no id or user')
             return;
@@ -259,7 +258,7 @@ const Result: FC<any> = ({ data }) => {
             ) : (Object.keys(currentUser || {}).length === 0) && !cookies.hasSubmitForm ? (
 
                     <>
-                        <UserForm results={results} />
+                        <UserForm results={data} />
 
 
 
