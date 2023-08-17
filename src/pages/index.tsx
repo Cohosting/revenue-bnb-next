@@ -238,7 +238,7 @@ export default function Home() {
       })
       setShowLoading();
 
-      navigate.push(`result/${id}`);
+      window.location.href = `result/${id}`;
     } else if (!CU && isUserSearched) {
       /* Or show the moddal of the auth!!!! */
       setShowAuthModal(true)
