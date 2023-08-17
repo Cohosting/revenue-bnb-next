@@ -80,7 +80,10 @@ const Result: FC<any> = ({ data }) => {
             }
             );
         }
-        if (!id || !currentUser) return;
+        if (!id || !currentUser) {
+            console.log('no id or user')
+            return;
+        };
         fetchData(id)
             .then(fetchedData => {
                 setLoading(false)
