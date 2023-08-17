@@ -217,7 +217,7 @@ export default function Home() {
 
 
       /* @ts-ignore */
-      await fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK, {
+      fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -237,8 +237,19 @@ export default function Home() {
           userType: CU.userType,
         })
       })
-      setShowLoading();
+        .then(response => {
+          // Handle the response if needed
+          // For example, you might want to check if the response is okay and log any issues:
+          if (!response.ok) {
+            console.error("Error in fetch:", response.statusText);
+          }
+        })
+        .catch(error => {
+          // Handle any errors that occurred during fetch
+          console.error("Failed to make the fetch request:", error);
+        });
 
+      // Immediately navigate, without waiting for the fetch to complete
       navigate.push(`result/${id}`);
     } else if (!CU && isUserSearched) {
       /* Or show the moddal of the auth!!!! */
