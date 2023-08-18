@@ -131,7 +131,7 @@ const Price = ({ average, professional }) => {
           </Text>
         </Flex>
         <DetailBox
-          yearly={professional.revenue * 12}
+          yearly={professional.revenue}
           monthly={professional.occupancy_rate}
           nightly={professional.average_daily_rate}
         />
