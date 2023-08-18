@@ -250,7 +250,7 @@ export default function Home() {
         });
 
       // Immediately navigate, without waiting for the fetch to complete
-      navigate.push(`result/${id}`);
+      navigate.push(`/results/${id}`, undefined, { shallow: true });
 
      /*  navigate.push(`result/${id}`) */;
     } else if (!CU && isUserSearched) {

@@ -56,7 +56,8 @@ const Token: FC<any> = () => {
                         localStorage.setItem(TOKEN_KEY, token);
                         console.log('Token stored in localStorage.');
                         setError("Token verified Successfully");
-                        router.push(window.location.origin + "/" + "result/" + decodedToken.reportId);
+                        router.push(window.location.origin + "/" + "result/" + decodedToken.reportId, undefined, { shallow: true });
+
                     }
                 } else {
                     // Token doesn't have an expiration claim
