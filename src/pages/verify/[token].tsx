@@ -56,7 +56,7 @@ const Token: FC<any> = () => {
                         localStorage.setItem(TOKEN_KEY, token);
                         console.log('Token stored in localStorage.');
                         setError("Token verified Successfully");
-                        router.push(window.location.origin + "/" + "result/" + decodedToken.reportId, undefined, { shallow: true });
+                        router.push(window.location.origin + "/" + "result/" + decodedToken.reportId);
 
                     }
                 } else {
