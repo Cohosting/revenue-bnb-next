@@ -1,3 +1,5 @@
+/* @ts-nocheck 
+ */
 import dynamic from 'next/dynamic';
 import { Box, Button, Flex, Progress, Text, useDisclosure } from '@chakra-ui/react';
 import React, { createContext, FC, useContext, useEffect, useState } from 'react';
@@ -37,9 +39,9 @@ const Result: FC<any> = ({ data }) => {
 
     const router = useRouter();
     const { id } = router.query
-    const { onClose } = useContext(stateProvider);
+    const { onClose } = useContext<any>(stateProvider);
     const { currentUser } = useContext(AuthContext);
-    const [results, setResults] = useState({});
+    const [results, setResults] = useState<any>({});
     const [loading, setLoading] = useState(true);
     const [isNightlyGenarating, setIsNightlyGenarating] = useState(true);
     const [expense, setExpense] = useState({});

@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import { Box, Button, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useDisclosure, useMediaQuery, useOutsideClick } from '@chakra-ui/react'
+import { Box, Button, Flex, Modal, Image as ChakraImage, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useDisclosure, useMediaQuery, useOutsideClick } from '@chakra-ui/react'
+import Image from 'next/image'
 import { useContext, useEffect, useRef } from 'react';
 import { Header } from './../Components/Header'
 import stateProvider from '../context/stateProvider';
@@ -314,7 +314,8 @@ export default function Home() {
 
                   <Flex justifyContent={'space-between'} alignItems={'center'} w={'100%'} maxW={'650px'} borderRadius={'12px'} py={'11px'} px={'15px'} border={'1px solid  #e2e8f0'} boxShadow={'0px 1px 3px -2px rgba(158, 157, 164, 0.49)'}>
                     <Flex pos={'relative'}>
-                      <Flex onClick={() => ref.current.focus()} cursor="pointer" overflow={'hidden'} borderRight="1px solid #e2e8f0" w={'200px'} alignItems={'center'}>
+                      {/* @ts-ignore */}
+                      <Flex onClick={() => ref?.current?.focus()} cursor="pointer" overflow={'hidden'} borderRight="1px solid #e2e8f0" w={'200px'} alignItems={'center'}>
                         <GoLocation />
                         <Box ml={'10px'} w={'140px'}>
                           <Text sx={labelStyle}>Where</Text>
@@ -454,7 +455,18 @@ export default function Home() {
                         setPropertyCoordinates(el.coordinates)
 
                       }} cursor={'pointer'} mx={'10px'} pt={isEven(idx) && '50px'} >
-                        <Image objectFit={'cover'} borderRadius={'10px'} src={el.imageUrl} w={'250px'} height={'170px'} />
+                        <ChakraImage
+                          src={el.imageUrl}
+                          alt="Description"
+                          borderRadius={'12px'}
+                          w={'250px'}
+                          height={'170px'}
+                          objectFit="cover"
+
+
+
+
+                        />
                         <Text textAlign={'center'} mt={2} fontFamily={'GTMedium'} fontSize={'12px'} fontWeight={'500'} > Search location</Text>
                         <Text fontFamily={'GTBold'} textAlign="center" fontSize={['12px', '14px']}> {el.text} </Text>
                       </Box>
@@ -467,8 +479,10 @@ export default function Home() {
             </Box>
 
             {/* Company Image */}
-            <Box w="100%" mt={'100px'} >
-              <Image src={companiesImage.src} w={'100%'} />
+            <Box w="100%" height={'500px'} mt={'100px'} pos={'relative'} >
+              <Image src={companiesImage.src} layout='fill'
+                objectFit='contain'
+                alt='s' />
             </Box>
 
           </Flex>

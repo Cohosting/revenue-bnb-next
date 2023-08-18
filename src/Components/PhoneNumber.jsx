@@ -11,16 +11,14 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import FeatherIcon from 'feather-icons-react';
-import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc,  getFirestore,  updateDoc } from 'firebase/firestore';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import stateProvider from '../context/stateProvider';
-import { db } from '../lib/firebase';
 
 const PhoneNumber = ({ info }) => {
   const { currentUser } = useContext(stateProvider);
@@ -76,6 +74,7 @@ const PhoneNumber = ({ info }) => {
       return;
     }
     setIsSyncing(true);
+    const db = getFirestore();
     try {
       const reportRef = doc(db, 'users', currentUser.id);
       await updateDoc(reportRef, {

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { getFirestore, doc, getDoc, setDoc, query, where, getDocs, collection, addDoc, updateDoc } from 'firebase/firestore';
+import {  doc,  setDoc, query, where, getDocs, collection, addDoc, updateDoc, getFirestore } from 'firebase/firestore';
 import { Button, Input, Stack, FormControl, Spinner, Box, Fade, Collapse, Text, Flex, useMediaQuery, Image, InputLeftElement, InputGroup, RadioGroup, Radio } from "@chakra-ui/react";
-import { db } from './../lib/firebase';
-import jwt from 'jsonwebtoken'
+
+import jwt from 'jsonwebtoken';
 import { AuthContext } from '../context/authContext';
 import { AiFillLock, AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
-import { BsTelephone } from 'react-icons/bs';
 
 
 
@@ -111,6 +110,7 @@ const UserForm = ({
 
   const checkUser = async (email) => {
     setIsLoading(true);
+    const db = getFirestore();
     const q = query(collection(db, 'users'), where('email', '==', email));
     const querySnapshot = await getDocs(q);
     setIsLoading(false);
@@ -165,8 +165,10 @@ const UserForm = ({
     
     // If new user, create new document with user data and verification code
     // If existing user, update the document with new verification code
+    const db = getFirestore();
 
     if (isNewUser) {
+      
       const ref = doc(collection(db, 'users'))
       await setDoc(ref, {
         email,
@@ -223,7 +225,8 @@ const UserForm = ({
 
   const handleSubmit = async () => {
     setSubmitLoading(true);
-  
+    const db = getFirestore();
+
     try {
       const q = query(collection(db, 'users'), where('email', '==', email));
       const querySnapshot = await getDocs(q);

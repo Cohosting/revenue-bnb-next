@@ -6,7 +6,6 @@ const Locations = () => {
   const { setLocation, getPropertyCoordinates, setIsSelectedFromDropdown } =
     useContext(stateProvider);
   const [isLargerThan1400] = useMediaQuery('(min-width: 1400px)');
-  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
 
   const topLocations = [
     'St. George, UT',

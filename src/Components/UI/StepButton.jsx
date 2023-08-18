@@ -2,7 +2,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import { useContext } from 'react';
 import stateProvider from './../../context/stateProvider';
 
-const StepButton = ({ isDisable, button }) => {
+const StepButton = ({ isDisable,  }) => {
   const { pageChange, isAuthenticated, pageBack } = useContext(stateProvider);
 
   const buttonStyles = {

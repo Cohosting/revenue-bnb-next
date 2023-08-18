@@ -1,8 +1,7 @@
-import { Button, Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Input, Text, SlideFade, Radio, Stack, RadioGroup, Spinner, Collapse } from '@chakra-ui/react'
+import { Button, Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Input, Text,  Radio, Stack, RadioGroup, Spinner, Collapse } from '@chakra-ui/react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { debounce, set } from 'lodash'; // External library for debounce
-import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import {  collection, doc, getDocs, getFirestore, query, setDoc, updateDoc, where } from 'firebase/firestore';
+
 import jwt from 'jsonwebtoken';
 import { sentResultMail } from '../../lib/Mail';
 import stateProvider from '../../context/stateProvider';
@@ -100,7 +99,7 @@ export const AuthModal = () => {
 const searchUser = async (value) => {
     setUserCheckLoading(true);
     setIsUserNotExist(false);
-
+const db = getFirestore()
     if (!isValidEmail(value))  {
       setUserCheckLoading(false);
       setIsDisabled(true); // Keep the button disabled if email is invalid
@@ -155,6 +154,7 @@ const searchUser = async (value) => {
         }
   
         token = generateToken(foundUser.id, reportId,);
+        const db = getFirestore()
         ref = doc(db, 'users', foundUser.id);
         try {
           await updateDoc(ref, { token });

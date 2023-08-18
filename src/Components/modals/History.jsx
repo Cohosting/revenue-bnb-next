@@ -1,14 +1,11 @@
 import { Button, Modal, ModalBody, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 import Login from '../../auth/Login';
 import Signup from '../../auth/Signup';
 import stateProvider from '../../context/stateProvider';
-import { db } from '../../lib/firebase';
 import ForgotPassword from '../ForgotPassword';
 import HistoryModal from './HistoryModal';
 import { AuthContext } from '../../context/authContext';
@@ -73,33 +70,6 @@ export const History = () => {
     },
   };
 
-  /*   useEffect(() => {
-    if (!currentUser) return;
-
-    (async () => {
-      let collectionRef = collection(db, 'reports');
-      const reportQuery = query(
-        collectionRef,
-        where('createdBy', '==', currentUser.id)
-      );
-      const snapshot = await getDocs(reportQuery);
-      let data = [];
-      snapshot.forEach(el => data.push(el.data()));
-
-      function compare(a, b) {
-        if (a.location < b.location) {
-          return -1;
-        }
-        if (a.location > b.location) {
-          return 1;
-        }
-        return 0;
-      }
-
-      console.log(JSON.stringify(data.sort(compare)))
-      setHistory(data);
-    })();
-  }, [currentUser]); */
 
   return (
     <>

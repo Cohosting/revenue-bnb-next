@@ -5,7 +5,7 @@ import {
   Grid,
   GridItem,
   Image, Spinner, Text,
-  useDisclosure,
+  
   useMediaQuery
 } from '@chakra-ui/react';
 import { ArrowRight } from 'phosphor-react';
@@ -16,7 +16,6 @@ import HotTub from './../../Images/Screen.png';
 import BBQGrill from './../../Images/Screengrill.png';
 import Wifi from './../../Images/wifi.png';
 import { setBaseResultDoc } from '../../lib/reports';
-import Schedule from '../modals/schedule';
 import { SignupModal } from '../modals/SignupModal';
 import stateProvider from './../../context/stateProvider';
 import Gym from './../../Images/gym.png';

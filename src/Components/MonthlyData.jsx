@@ -1,6 +1,6 @@
 import { Box, Grid, GridItem, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { LayoutBox } from './Layout/LayoutBox';
 import TipBox from './UI/TipBox';
 

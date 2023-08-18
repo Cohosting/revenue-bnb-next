@@ -6,15 +6,20 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import Lottie from 'lottie-react';
 import { useContext, useState } from 'react';
-/* import { useNavigate } from 'react-router-dom';
- */import hello from '../../src/lotties/hello.json';
 import stateProvider from '../context/stateProvider';
 import { setBaseResultDoc } from '../lib/reports';
+import dynamic from 'next/dynamic';
+// Dynamically import Lottie since animations might be large and possibly not needed immediately.
+const Lottie = dynamic(() => import('lottie-react'));
 
-const Login = ({ sx, handleSignModal, handleForgotPassword, onClose }) => {
+// If authentication is not required immediately, consider dynamically importing these.
+const getAuth = dynamic(() => import('firebase/auth').then(mod => mod.getAuth));
+const signInWithEmailAndPassword = dynamic(() => import('firebase/auth').then(mod => mod.signInWithEmailAndPassword));
+
+// If the hello animation is not needed right away.
+/* const hello = dynamic(() => import('../../src/lotties/hello.json'));
+ */const Login = ({ sx, handleSignModal, handleForgotPassword, onClose }) => {
   const [isWrongPassword, setIsWrongPassword] = useState(false)
   const { counts, propertyCoordinates, location, isItFromHeader, progressHandler, setIsForgotPassword } =
     useContext(stateProvider);
@@ -177,11 +182,11 @@ const Login = ({ sx, handleSignModal, handleForgotPassword, onClose }) => {
             It's nice to see you.
           </Text>
         </Box>
-        <Lottie
+{/*         <Lottie
           style={{ width: '80%', paddingTop: '1rem' }}
           animationData={hello}
           loop={true}
-        />
+        /> */}
       </Flex>
 
       <Flex direction={'column'} gap=".7rem" pb="2rem" pr="1rem">

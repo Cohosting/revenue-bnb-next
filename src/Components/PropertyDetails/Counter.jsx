@@ -2,7 +2,7 @@ import { Button, Flex, Text, useMediaQuery } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import stateProvider from './../../context/stateProvider';
 
-const Counter = ({ text, value, icon, color, isDisabled }) => {
+const Counter = ({ text, value, icon, color }) => {
   const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)');
 
   const { setCounts, counts } = useContext(stateProvider);

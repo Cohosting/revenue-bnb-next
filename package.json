@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.6",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@next/font": "13.1.1",
     "@sentry/nextjs": "^7.64.0",
     "@types/node": "18.11.18",
@@ -21,7 +22,7 @@
     "eslint-config-next": "^13.4.17",
     "feather-icons-react": "^0.6.2",
     "firebase": "^9.15.0",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "^10.16.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "lottie-react": "^2.3.1",
@@ -44,6 +45,7 @@
     "@next/bundle-analyzer": "^13.4.17",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/uuid": "^9.0.0",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "webpack-bundle-analyzer": "^4.9.0"
   }
 }

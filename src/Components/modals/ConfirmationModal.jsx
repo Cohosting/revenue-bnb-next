@@ -3,7 +3,7 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
-  useDisclosure
+  
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import stateProvider from '../../context/stateProvider';

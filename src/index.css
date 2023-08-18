@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'GTBold';
-  src: url('./fonts/GTWalsheim/GT-Walsheim-Bold.ttf') format('truetype');
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Bold.woff2') format('truetype');
   font-weight: bold;
 }
 @font-face {
@@ -10,7 +10,7 @@
 }
 @font-face {
   font-family: 'GTMedium';
-  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium.ttf') format('truetype');
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium.woff2') format('truetype');
 }
 
 @font-face {
@@ -23,7 +23,7 @@
 }
 @font-face {
   font-family: 'GTMediumOblique';
-  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium-Oblique.ttf')
+  src: url('./fonts/GTWalsheim/GT-Walsheim-Medium-Oblique.woff2')
     format('truetype');
   font-weight: 600;
 }

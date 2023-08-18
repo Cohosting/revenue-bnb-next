@@ -17,9 +17,6 @@ import HistoryModal from '../modals/HistoryModal';
 import PropertyDetails from '../PropertyDetails/PropertyDetails';
 import Confirmation from './../../auth/Confirmation';
 import stateProvider from './../../context/stateProvider';
-import Banner from './../../Images/banner.png';
-import DesktopBanner from './../../Images/desktopbanner.jpg';
-import Logo from './../../Images/revenuebnb_logo.png';
 import mainLogo from './../../Images/main_logo.svg';
 import ForgotPassword from '../ForgotPassword';
 import { useRouter } from 'next/router';
@@ -131,12 +128,12 @@ const LogoItem = () => {
                               : '0'
                       }
                     >
-                      <Image
+            {/*           <Image
                         src={DesktopBanner.src}
                         h={!isLargerThan1200 ? 'auto' : !isLargerThan1600 ? '450px' : isLargerThan1800 ? '550px' : '520px'}
                         w='100%'
                         alt='banner img'
-                      />
+                      /> */}
                       <Text
                         sx={{
                           ...boxStyles,
@@ -295,8 +292,8 @@ const LogoItem = () => {
 
             {router.pathname === '/' && (
               <>
-                <Image mt={'1rem'} w='100%' src={Banner.src} alt='banner img' />
-
+{/*                 <Image mt={'1rem'} w='100%' src={Banner.src} alt='banner img' />
+ */}
                 <Text
                   as={'div'}
                   sx={{

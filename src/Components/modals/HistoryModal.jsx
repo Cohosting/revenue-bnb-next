@@ -1,9 +1,7 @@
-import { Box, Button, Divider, filter, Flex, Image, Input, InputGroup, InputLeftElement, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text } from '@chakra-ui/react';
-import { getAuth, signOut } from 'firebase/auth';
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { Box, Button, Divider,  Flex, Image, Input, InputGroup, InputLeftElement, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text } from '@chakra-ui/react';
+import { collection, getDocs,  getFirestore,  query, where } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import stateProvider from '../../context/stateProvider';
-import { db } from '../../lib/firebase';
 import { BsSearch } from 'react-icons/bs'
 
 import Close from './../../Images/svgfile/closeButton.svg';
@@ -32,6 +30,7 @@ const HistoryModal = ({ isOpen, onClose }) => {
         if (!currentUser) return;
 
         (async () => {
+            const db = getFirestore();
             let collectionRef = collection(db, 'reports');
             const reportQuery = query(
                 collectionRef,

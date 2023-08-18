@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
-import jwt from 'jsonwebtoken';
+import dynamic from 'next/dynamic';
 
+import jwt from 'jsonwebtoken';
 import {  doc, getDoc } from 'firebase/firestore'; // Import Firestore modules
 import { db } from "./../lib/firebase"
 

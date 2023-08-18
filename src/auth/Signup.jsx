@@ -1,3 +1,6 @@
+import dynamic from 'next/dynamic';
+
+// Chakra UI components (commonly used UI components are typically not imported dynamically)
 import {
   Button,
   Checkbox,
@@ -8,25 +11,32 @@ import {
   Spinner,
   Stack,
   Text,
-  useMediaQuery,
+  useMediaQuery
 } from '@chakra-ui/react';
-import FeatherIcon from 'feather-icons-react';
 
-import GoogleLogo from './../Images/google_logo.png'
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import Lottie from 'lottie-react';
+// Dynamically importing Lottie as animations might be large.
+
+
+// Dynamically import FeatherIcon if not immediately required on page load.
+const FeatherIcon = dynamic(() => import('feather-icons-react'));
+
+// Firebase authentication (dynamically import if not needed immediately)
+const getAuth = dynamic(() => import('firebase/auth').then(mod => mod.getAuth));
+const createUserWithEmailAndPassword = dynamic(() => import('firebase/auth').then(mod => mod.createUserWithEmailAndPassword));
+
+// Regular imports for other items
+import GoogleLogo from './../Images/google_logo.png';
 import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import graph from '../../src/lotties/graph.json';
 import stateProvider from '../context/stateProvider';
-import { getAirtableSync } from '../lib/airtable';
-import { db } from '../lib/firebase';
 import { sentResultMail } from '../lib/Mail';
 import { setBaseResultDoc } from '../lib/reports';
 import { createUserData, googleSignIn } from './../lib/auth';
 import './../lib/firebase';
 import { useRouter } from 'next/router';
+
+
+
 
 const Signup = ({ values, v, setValues, handleLoginModal, onSuccessModal }) => {
   const [isPrivacyPolicChecked, setIsPrivacyPolicChecked] = useState(null)
@@ -212,11 +222,11 @@ const Signup = ({ values, v, setValues, handleLoginModal, onSuccessModal }) => {
   };
   return (
     <Flex direction={'column'}>
-      <Lottie
+{/*       <Lottie
         style={{ height: '150px', width: '150px', marginInline: 'auto' }}
         animationData={graph}
         loop={true}
-      />
+      /> */}
       <Text
         textAlign={'center'}
         fontSize='25px'

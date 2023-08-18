@@ -13,80 +13,12 @@ export const Recommendation = ({ name, percentage, site, number }) => {
       <Flex direction={'column'}>
         <Text>Management we trust</Text>
       </Flex>
-      {/* <Grid
-        border={`1px solid ${isClicked ? '#0A0E52' : '#E5E5E5'}`}
-        borderRadius={'12px'}
-        borderBottom={isClicked && 'none'}
-        borderBottomRadius={isClicked && 'none'}
-        sx={{
-          padding: '.7rem',
-        }}
-        onClick={() => setIsClicked(!isClicked)}
-      >
-        <Flex justifyContent='space-between' align={'center'} mx='0.5rem'>
-          <Text color={isClicked ? '#0A0E52' : '#6B6B6B'}>{name}</Text>
-          <Flex align={'center'} color={isClicked ? '#212529' : '#6B6B6B'}>
-            <Text fontWeight={'medium'} mr='1rem'>
-              {percentage}% <br />
-              <Text as='span' ml='0.3rem'>
-                Fee
-              </Text>
-            </Text>
-            <ChevronDown cls={isClicked && 'rotateForward'} />
-          </Flex>
-        </Flex>
-      </Grid> */}
-      {/* {isClicked && (
-        <Grid
-          border={`1px solid ${isClicked ? '#0A0E52' : '#E5E5E5'}`}
-          borderTop={'none'}
-          borderRadius={'12px'}
-          borderTopRadius='0px'
-          direction={'column'}
-          className='animation'
-          mt='-1.5rem'
-          fontWeight={'medium'}
-        >
-          <Divider mx='1.2rem' w='90%' borderColor={'#EEEEEE'} />
-          <Text fontSize={'12px'} color={'#6B6B6B'} p='1rem' pb={'.5rem'}>
-            Website:{' '}
-            <Link fontSize={'14px'} color={'#0A0E52'} href={'https://' + site}>
-              {site}
-            </Link>
-          </Text>
-          <Text fontSize={'12px'} color={'#6B6B6B'} px='1rem' pb={'.5rem'}>
-            Phone number:{' '}
-            <Text fontSize={'14px'} color={'#0A0E52'} as={'span'}>
-              {number}
-            </Text>
-          </Text>
-        </Grid> */}
-      {/* )} */}
     </>
     // );
   );
 };
 
-// const recommended = [
-//   {
-//     name: 'Cohostin',
-//     percentage: '15',
-//     site: 'www.cohostin.com',
-//     phone: '+1 608-313-0295',
-//   },
-//   {
-//     name: 'Redsands',
-//     percentage: '30',
-//     site: 'www.redsands.com',
-//     phone: '+1 608-313-0295',
-//   },
-//   {
-//     name: 'Redrock',
-//     percentage: '35',
-//     site: 'www.redrock.com',
-//     phone: '+1 608-313-0295',
-//   },
-// ];
+
 
 const Managers = () => {
   return (

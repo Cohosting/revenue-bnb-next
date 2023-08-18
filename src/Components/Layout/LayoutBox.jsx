@@ -2,7 +2,6 @@ import { Box, Flex, Text, useMediaQuery } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import stateProvider from '../../context/stateProvider';
-import FunFact from '../PropertyDetails/FunFact';
 import Locations from './../PropertyDetails/Locations';
 
 export const LayoutBox = ({ text, children, sx, isAuth, shouldHeight100 = true }) => {

@@ -1,7 +1,6 @@
 
 import {
   Box,
-  Button,
   Flex,
   Image,
   Modal,
@@ -11,7 +10,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  useDisclosure,
 } from '@chakra-ui/react';
 /* import { useNavigate } from 'react-router-dom';
  */import scheduleIcon from '../../Images/schedule.svg';
@@ -22,26 +20,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Schedule = ({ isOpen, onOpen, onClose }) => {
   const ref = useRef()
-  const btnStyles = {
-    background: '#fff',
-    color: 'rgb(2,43,84)',
-    border: '2px solid rgb(2,43,84)',
-    borderRadius: '0.15rem',
-    width: '250px',
-    mt: '1rem',
 
-    _hover: {
-      background: '#fff',
-    },
-    _focus: {
-      border: '',
-      background: '#fff',
-    },
-    _active: {
-      border: '',
-      background: '',
-    },
-  };
 
   const colors = {
     primary: 'rgb(2, 43, 84)',

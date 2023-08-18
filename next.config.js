@@ -1,5 +1,31 @@
 /** @type {import('next').NextConfig} */
-const { withSentryConfig } = require("@sentry/nextjs");
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+module.exports = {
+  webpack: function (config, { isServer }) {
+    // Ensure the analysis is only done during a production build
+    // You can remove this if-statement if you want to analyze during development mode too
+    if (!isServer && false) {
+      config.plugins.push(new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: '../bundles/client.html',
+        openAnalyzer: true,
+      }));
+    }
+
+    return config;
+  },
+  images: {
+    domains: ['images.unsplash.com', 'topbrunchspots.com'],
+  },
+};
+
+
+
+
+
+/* const { withSentryConfig } = require("@sentry/nextjs");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -53,5 +79,5 @@ module.exports = withSentryConfig(
     disableLogger: true,
   }
 );
-
+ */
 

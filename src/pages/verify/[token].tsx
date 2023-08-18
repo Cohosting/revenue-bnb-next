@@ -2,8 +2,7 @@ import { useRouter } from 'next/router';
 import React, { FC, useEffect } from 'react';
 
 import jwt from 'jsonwebtoken';
-import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { collection, doc, getDocs, getFirestore, query, updateDoc, where } from 'firebase/firestore';
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react';
 
 const TOKEN_KEY = 'revenuebnb_token';
@@ -20,7 +19,7 @@ const Token: FC<any> = () => {
         (async () => {
             try {
                 const decodedToken: any = jwt.decode(token);
-
+                const db = getFirestore();
                 const userRef = collection(db, "users");
                 const q = query(userRef, where("token", "==", token));
                 const querySnapshot = await getDocs(q);
