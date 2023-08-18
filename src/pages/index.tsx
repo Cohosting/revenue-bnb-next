@@ -250,7 +250,7 @@ export default function Home() {
         });
 
       // Immediately navigate, without waiting for the fetch to complete
-      window.location.href = `result/${id}`;
+      navigate.push(`result/${id}`);
 
      /*  navigate.push(`result/${id}`) */;
     } else if (!CU && isUserSearched) {
