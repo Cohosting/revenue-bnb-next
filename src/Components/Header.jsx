@@ -1,5 +1,4 @@
 import { Button, Flex, Text, Box, useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody } from '@chakra-ui/react'
-import { getAuth, signOut } from 'firebase/auth';
 import React from 'react'
 import { useContext } from 'react';
 import { useCookies } from 'react-cookie';
@@ -7,21 +6,19 @@ import Confirmation from './../auth/Confirmation';
 import Login from './../auth/Login';
 import Signup from './../auth/Signup';
 import ForgotPassword from './../Components/ForgotPassword';
+import dynamic from 'next/dynamic';
 
-import HistoryModal from './../Components/modals/HistoryModal';
-import { LoginModal } from './../Components/modals/LoginModal';
-import stateProvider from './../context/stateProvider';
+const HistoryModal = dynamic(() => import('../Components/modals/HistoryModal'));import stateProvider from './../context/stateProvider';
 import { AuthContext } from '../context/authContext';
 let FontFamily = 'GTBold'
 
 export const Header = ({ isOpen: isSignUpOpen, onOpen: onSignupOpen, onClose: onSignupClose, onSuccessClose, onSuccessModal, isSuccessModal }) => {
-    const [cookies, setCookie, removeCookie] = useCookies(['hasSubmitForm']);
+    const [ removeCookie] = useCookies(['hasSubmitForm']);
 
     const {
 
         values,
         setValues,
-        setIsItFromHeader
 
     } = useContext(stateProvider);
     const { currentUser  } = useContext(AuthContext)

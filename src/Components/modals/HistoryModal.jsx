@@ -28,7 +28,6 @@ const HistoryModal = ({ isOpen, onClose }) => {
     const {  history, setHistory } = useContext(stateProvider);
     const { currentUser } = useContext(AuthContext)
 
-console.log(currentUser)
     useEffect(() => {
         if (!currentUser) return;
 
