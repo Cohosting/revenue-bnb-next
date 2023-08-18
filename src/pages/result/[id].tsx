@@ -61,6 +61,15 @@ const Result: FC<any> = ({ data }) => {
     };
     const { isError } = error;
     useLegacyEffect(() => {
+        const token = localStorage.getItem('revenuebnb_token');
+        if (!token) {
+            /* @ts-ignore */
+            setResults(data);
+            setTimeout(() => {
+                setLoading(false)
+            }, 1500);
+
+        }
         console.log('legacy effect run with id', id, currentUser)
         if (!id || !currentUser) {
             console.log('no id or user')
@@ -153,7 +162,6 @@ const Result: FC<any> = ({ data }) => {
             }, 800);
         }
     }, [progress]);
-
     return (
 
         <ResultContext.Provider
