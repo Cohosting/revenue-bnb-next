@@ -19,6 +19,7 @@ import { useInput } from './../Components/PropertyDetails/PropertyDetails'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../context/authContext';
 import dynamic from 'next/dynamic';
+import { generateCode } from '../lib/rapidApi';
 const MobileSearch = dynamic(() => import('../Components/MobileSearch'));
 const SavvyCal = dynamic(() => import('./../Components/savvyCall'));
 function isEven(n: any) {
@@ -267,6 +268,8 @@ export default function Home() {
   useEffect(() => {
     address.setShow(false);
 
+    /*     generateCode();
+     */
   }, [location])
   return (
     <>

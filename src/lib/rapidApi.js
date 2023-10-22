@@ -71,7 +71,7 @@ export const getNightlyData = async (bedrooms, coordinates, id) => {
 
 }
 
-
+ 
 
 export const getCachedOrLiveAnualData = async (id, additionalObject) => {
     const docSnap = await getDoc(db, 'results', id);
@@ -86,3 +86,22 @@ export const getCachedOrLiveAnualData = async (id, additionalObject) => {
 
 }
 
+export async function generateCode() {
+    const apiKey = "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";
+    const prompt = "Create a small component with HTML, CSS, and JavaScript that displays a button. When clicked, it changes the text to 'Clicked!'.";
+    const maxTokens = 100;
+  
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        
+      },
+      body: JSON.stringify({ prompt, max_tokens: maxTokens, model: 'gpt-4' })
+    });
+  
+    const data = await response.json();
+    console.log(data)
+    return data.choices[0].text.trim();
+  }
