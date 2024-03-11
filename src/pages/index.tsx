@@ -263,6 +263,7 @@ export default function Home() {
       /* setIsItFromHeader(false)
       onSignupOpen() */
     }
+
   }
 
   useEffect(() => {
