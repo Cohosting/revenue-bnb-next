@@ -8,6 +8,7 @@ import stateProvider from '../../context/stateProvider';
 import { setBaseResultDoc } from '../../lib/reports';
 import { AuthContext } from '../../context/authContext';
 import Confirmation from '../../auth/Confirmation';
+import { db } from '../../lib/firebase';
 function isValidEmail(email) {
   // Regular expression pattern for email validation
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -154,7 +155,6 @@ const db = getFirestore()
         }
   
         token = generateToken(foundUser.id, reportId,);
-        const db = getFirestore()
         ref = doc(db, 'users', foundUser.id);
         try {
           await updateDoc(ref, { token });
