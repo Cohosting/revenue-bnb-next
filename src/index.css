@@ -49,3 +49,137 @@
 .scroll::-webkit-scrollbar {
   display: none;
 }
+.marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f00; /* Initial color */
+  animation: bounce 1s infinite;
+}
+
+.marker:hover {
+  background-color: #0f0; /* Hover color */
+  animation: none; /* Stop bouncing on hover */
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+#marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: red; /* Marker color */
+  position: absolute; /* Absolute positioning required */
+}
+
+.custom-marker {
+  cursor: pointer;
+}
+
+.lock-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 5px 17px 5px; /* Adjust padding as needed */
+  display:  flex; /* Adjust display as needed */
+  align-items: center; /* Adjust alignment as needed */
+  justify-content: center;
+
+};
+
+.lock-container:hover {
+  background-color: rgba(92, 171, 140, 0.3);
+}
+
+.home-container {
+  background-color: white;
+  border-radius: 80px;
+  padding:   12px 14px 12px
+  ; /* Adjust padding as needed */
+  display:  flex; /* Adjust display as needed */
+  align-items: center; /* Adjust alignment as needed */
+  justify-content: center;
+}
+
+.home-lock {
+  background-color: black !important;
+  color: white !important;
+}
+
+.home-lock:hover {
+  background-color: black !important;
+}
+
+.home-popup {
+  max-width: 100% !important;
+  z-index: 9999;
+}
+
+.home-popup > .mapboxgl-popup-content {
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+}
+.home-popup > .mapboxgl-popup-tip {
+  display: none !important;;
+};
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  font-weight: bold;
+}
+
+.comparable-item {
+  display: flex;
+  border-radius: 6px;
+  background-color: white;
+  padding: 0.3rem;
+  align-items: center;
+  width: max-content;
+}
+
+.property-image {
+  border-radius: 6px;
+  width: 100px;
+  height: 100px;
+}
+
+.details {
+  margin-left: 1rem;
+  padding-right: 1rem;
+  font-family: Arial, sans-serif; /* Replace with desired font if needed */
+}
+
+.price {
+  font-weight: bold;
+}
+
+.features,
+.property-name,
+.occupancy {
+  margin-bottom: 0.5rem;
+}
+
+.property-name {
+  text-overflow: ellipsis;
+}

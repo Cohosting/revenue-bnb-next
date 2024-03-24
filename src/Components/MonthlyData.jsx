@@ -104,38 +104,33 @@ export const Months = ({ month, amount, occupancyRate }) => {
     </GridItem>
   );
 };
+export const getKeys = () => {
+  const dates = ['2023-11', '2023-12', '2023-04', '2023-03', '2023-07', '2023-09', '2024-01', '2023-10', '2023-05', '2023-08', '2023-02', '2023-06'];
+
+  // Custom comparison function for sorting by month number (1-12)
+  function compareMonths(a, b) {
+    const monthA = parseInt(a.split('-')[1]); // Extract month from string
+    const monthB = parseInt(b.split('-')[1]);
+
+    // Sort based on month number, then year if months are equal
+    if (monthA === monthB) {
+      return parseInt(a.split('-')[0]) - parseInt(b.split('-')[0]); // Sort by year if months are equal
+    } else {
+      return monthA - monthB;
+    }
+  }
+
+  // Sort the array using the custom comparison function
+  dates.sort(compareMonths);
+
+  return dates
+}
 
 const MonthlyData = ({ monthlyData }) => {
-
   const [visibilty, setVisibilty] = useState('visible');
 
-  const getKeys = () => {
-    const yearKeys = Object.keys(monthlyData);
-    const currentYear = new Date().getFullYear()
 
-    const data = yearKeys.filter((el) => el.includes(currentYear.toString()));
-    const firstYearIndex = yearKeys.indexOf(data[0]);
 
-    // removing element
-    yearKeys.splice(firstYearIndex, 2);
-
-    // adding element
-    yearKeys.splice(0, 0, ...data)
-
-    if (yearKeys.length > 12) {
-      return yearKeys.slice(0, 12)
-    }
-    return yearKeys;
-  }
-/* 
-  useEffect(() => {
-    setTimeout(() => {
-      setVisibilty('sds')
-
-    }, 3000)
-  }, [])
-
- */
 
   return (
 
@@ -170,8 +165,8 @@ const MonthlyData = ({ monthlyData }) => {
               >
 
                 <Months
-                  occupancyRate={monthlyData[key].average_occupancy_rate}
-                  month={months[idx].month} amount={monthlyData[key].average_revenue}
+                  occupancyRate={monthlyData[key]?.average_occupancy_rate}
+                  month={months[idx]?.month} amount={monthlyData[key]?.average_revenue}
                 />
               </motion.div>
             ))

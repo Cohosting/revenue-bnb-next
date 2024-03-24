@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useContext } from 'react';
 import dynamic from 'next/dynamic';
 
 import jwt from 'jsonwebtoken';
@@ -17,7 +17,6 @@ export const AuthContextComponent = ({ children }) => {
       const checkLocalStorageToken = async () => {
         // Check if a token exists in localStorage
         const token = localStorage.getItem(TOKEN_KEY);
-  console.log(token)
         if (token) {
           try {
             // Verify the token
@@ -48,7 +47,6 @@ export const AuthContextComponent = ({ children }) => {
             if (userSnapshot.exists()) {
               const userData = userSnapshot.data();
               setCurrentUser(userData);
-              console.log('User data fetched:', userData);
             } else {
               setCurrentUser(null);
               console.log('User data not found.');
@@ -69,13 +67,18 @@ export const AuthContextComponent = ({ children }) => {
       checkLocalStorageToken();
     }, []);
 
-    console.log({
-currentUser,
-isUserSearched      
-    })
+
     return (
       <AuthContext.Provider value={{ currentUser, setCurrentUser, isUserSearched, showAuthModal, setShowAuthModal }}>
         {children}
       </AuthContext.Provider>
     );
   };
+
+export function useAuth() {
+  const authContext = useContext(AuthContext);
+  if (!authContext) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return authContext;
+}

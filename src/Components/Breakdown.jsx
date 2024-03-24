@@ -1,17 +1,19 @@
 import dynamic from 'next/dynamic';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, SimpleGrid, Text } from '@chakra-ui/react';
 import FeatherIcon from 'feather-icons-react';
 import React, { useContext } from 'react';
 import stateProvider from './../context/stateProvider';
 import { LayoutBox } from './Layout/LayoutBox';
-
+import { CompareableListings } from './UI/CompareableListings'
+import { Map } from './Map';
 // Dynamically importing the components
 const Investment = dynamic(() => import('./Investment'));
 const Managers = dynamic(() => import('./Managers'));
 const MonthlyData = dynamic(() => import('./MonthlyData'));
 const NightlyData = dynamic(() => import('./NightlyData'));
 
-const Breakdown = ({ monthlyData }) => {
+const Breakdown = ({ monthlyData, results }) => {
+  const { comps } = results
   const { selectedName, isAuthenticated } = useContext(stateProvider);
 
   const iconsDetails = [
@@ -38,7 +40,19 @@ const Breakdown = ({ monthlyData }) => {
       <>
         {/* {!isAuthenticated && <BreakDownSign />} */}
         {isAuthenticated && selectedName === 'Monthly' && (
+          <>
           <MonthlyData monthlyData={monthlyData} />
+            <Box px={'35px'}>
+              <Text fontSize={'24px'}>Similar listing</Text>
+
+              <Box my={2}>
+                <CompareableListings listings={comps} results={results} />
+
+              </Box>
+            </Box>
+            {/*             <Map compareableProperty={comps} results={results} />
+ */}
+          </>
         )}
         {isAuthenticated && selectedName === 'Managers' && <Managers />}
         {isAuthenticated && selectedName === 'Investment score' && (

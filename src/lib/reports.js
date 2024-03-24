@@ -115,6 +115,8 @@ export const fetchData = async (id) => {
       const response = await anualReportAndMonthlyBreakdown(bedrooms, bathrooms, coordinates);
       const data = response.message;
 
+      console.log({ data });
+
  
       await setDoc(docRef, { 
         ...docSnap.data(), 

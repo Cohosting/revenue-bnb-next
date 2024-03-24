@@ -12,20 +12,22 @@ import { db } from './firebase';
       
         try {
           const options = {
-            method: 'GET',
-            url: 'https://7sdr27znoa.execute-api.us-east-2.amazonaws.com/v2/getIncomeHistory',
+            method: "GET",
+            url: "https://7sdr27znoa.execute-api.us-east-2.amazonaws.com/v2/getIncomeHistory",
             params: {
-                coordinate: `(${coordinates[1]}, ${coordinates[0]})`,
-                bedrooms: Math.floor(bedrooms),
-                bathrooms: Math.floor(bathrooms),
-                apiResponseType: 'estimator_summary_monthly',
-                returnQuartiles: 'true'
+              coordinate: `(${coordinates[1]}, ${coordinates[0]})`,
+              bedrooms: Math.floor(bedrooms),
+              bathrooms: Math.floor(bathrooms),
+              no_of_sample: 25,
+              apiResponseType: "estimator_with_comps",
+              returnQuartiles: "true",
             },
             headers: {
-                'x-api-key': 'jn719ivtlxoi9CnmHMX27gkCtg9qM2ejTw1MHYTQ',
-                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InN1YmhheWFuK2NvaG9zdGluQGFpcmJ0aWNzLmNvbSJ9.thRTb4PqjmHaV_0GcK8rfV-6RU7JZVbxdtfqyqDjodg'
-            }
-        };
+              "x-api-key": "jn719ivtlxoi9CnmHMX27gkCtg9qM2ejTw1MHYTQ",
+              Authorization:
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InN1YmhheWFuK2NvaG9zdGluQGFpcmJ0aWNzLmNvbSJ9.thRTb4PqjmHaV_0GcK8rfV-6RU7JZVbxdtfqyqDjodg",
+            },
+          };
 
 
       
