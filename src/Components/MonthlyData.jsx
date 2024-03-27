@@ -104,8 +104,8 @@ export const Months = ({ month, amount, occupancyRate }) => {
     </GridItem>
   );
 };
-export const getKeys = () => {
-  const dates = ['2023-11', '2023-12', '2023-04', '2023-03', '2023-07', '2023-09', '2024-01', '2023-10', '2023-05', '2023-08', '2023-02', '2023-06'];
+export const getKeys = (dates = []) => {
+  /*   const dates = ['2023-11', '2023-12', '2023-04', '2023-03', '2023-07', '2023-09', '2024-01', '2023-10', '2023-05', '2023-08', '2023-02', '2023-06']; */
 
   // Custom comparison function for sorting by month number (1-12)
   function compareMonths(a, b) {
@@ -128,7 +128,6 @@ export const getKeys = () => {
 
 const MonthlyData = ({ monthlyData }) => {
   const [visibilty, setVisibilty] = useState('visible');
-
 
 
 
@@ -157,7 +156,7 @@ const MonthlyData = ({ monthlyData }) => {
           animate={visibilty}
         >
           {
-            getKeys().map((key, idx) => (
+            getKeys(Object.keys(monthlyData)).map((key, idx) => (
               <motion.div
                 variants={itemVariants}
                 className='item'

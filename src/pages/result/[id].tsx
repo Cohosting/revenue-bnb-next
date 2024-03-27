@@ -164,8 +164,9 @@ const Result: FC<any> = ({ data }) => {
   }, [progress]);
 
   const handlePDFGenerate = async () => {
+    console.log(results.monthly_summary);
     const summary = results.last_12_months_summary.quartiles;
-    const res = await fetch(`http://localhost:9000/puppeteer/pdf`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}puppeteer/pdf`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -187,10 +188,11 @@ const Result: FC<any> = ({ data }) => {
           max: summary["90th_percentile"].occupancy_rate,
         },
 
-        monthsRevenue: getKeys().map((currentMonth) =>
-          results.monthly_summary[currentMonth].average_revenue === "N/A"
-            ? 0
-            : results.monthly_summary[currentMonth].average_revenue
+        monthsRevenue: getKeys(Object.keys(results.monthly_summary)).map(
+          (currentMonth) =>
+            results.monthly_summary[currentMonth].average_revenue === "N/A"
+              ? 0
+              : results.monthly_summary[currentMonth].average_revenue
         ),
       }),
     })
@@ -206,7 +208,7 @@ const Result: FC<any> = ({ data }) => {
         // Example with a basic download link (using a temporary anchor tag):
         const downloadLink = document.createElement("a");
         downloadLink.href = URL.createObjectURL(pdfBlob);
-        downloadLink.download = "your_pdf_filename.pdf";
+        downloadLink.download = `${results.location}.pdf`;
         downloadLink.click();
       });
   };
