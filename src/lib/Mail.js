@@ -248,7 +248,7 @@ const getResultHTML = (id, address, coordinates, name, bedrooms, token) => {
                                                                                           <tr>
                                                                                               <td align="center" style="height: 20px;text-align: center;border-radius: 20px;">
                                                                                                   <div>
-                                                                                                      <a href="https://www.revenuebnb.com/result/${id}" style=" color: #012333; display: inline-block; font-size: 12px; line-height: 14px; text-align: center; text-decoration: none; -webkit-text-size-adjust: none; font-weight: 700; font-family: 'Roboto', 'Arial', sans-serif;text-decoration: none;"><span style="color:#6B6B6B; text-decoration: none ;border-radius: 20px;">https://www.revenuebnb.com/verify/${token}</span></a>
+                                                                                                      <a href="${window.location.origin}/verify/${token}" style=" color: #012333; display: inline-block; font-size: 12px; line-height: 14px; text-align: center; text-decoration: none; -webkit-text-size-adjust: none; font-weight: 700; font-family: 'Roboto', 'Arial', sans-serif;text-decoration: none;"><span style="color:#6B6B6B; text-decoration: none ;border-radius: 20px;">${window.location.origin}/verify/${token}</span></a>
                                                                                                   </div>
                                                                                               </td>
                                                                                           </tr>
@@ -354,7 +354,7 @@ const getResultHTML = (id, address, coordinates, name, bedrooms, token) => {
               </div>
           </center>
       </body>
-      </html>`
+      </html>`;
 }
 
 
