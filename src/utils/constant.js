@@ -48,3 +48,46 @@ export let carouselData = [
     coordinates: [-113.289888, 37.1750272],
   },
 ];
+
+
+export const expenseItems = [
+  {
+    name: "Management fee (%)",
+    placeholder: "Enter percentage",
+    key: "managementFee",
+  },
+  {
+    name: "Property tax (%)",
+    placeholder: "Enter percentage",
+    key: "propertyTax",
+  },
+  {
+    name: "Lodging tax (%)",
+    placeholder: "Enter percentage",
+    key: "lodgingTax",
+  },
+  {
+    name: "Mortgage fee (monthly)",
+    placeholder: "Enter amount",
+    key: "mortgage",
+  },
+  { name: "HOA fee (annually)", placeholder: "Enter amount", key: "HOA" },
+  {
+    name: "Maintenance (annual)",
+    placeholder: "Enter amount",
+    key: "maintenance",
+  },
+  {
+    name: "Insurance (Annual)",
+    placeholder: "Enter amount",
+    key: "insurance",
+  },
+  {
+    name: "Electricity (Monthly)",
+    placeholder: "Enter amount",
+    key: "electricity",
+  },
+  { name: "WIFI (Monthly)", placeholder: "Enter amount", key: "wifi" },
+  { name: "Gas (Monthly)", placeholder: "Enter amount", key: "gas" },
+  { name: "Others (Annual)", placeholder: "Enter amount", key: "others" },
+];

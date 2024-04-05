@@ -1,5 +1,5 @@
 // DesktopSearch.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, Text, Button, InputGroup, InputLeftElement, Input, Box, Spinner } from '@chakra-ui/react';
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -7,10 +7,46 @@ import { BsCurrencyDollar } from 'react-icons/bs';
 import { BiTargetLock } from 'react-icons/bi';
 import { MapPin } from 'react-feather';
 
+
+/* 
+
 const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculatePrediction, calculatePrediction, setPropertyCoordinates, handleGetCurrentLocation, addItem, isOpen, removeItem, bedrooms, bathrooms, outsideRef, setDropdownLocationError, setIsSelectedFromDropdown }) => {
     return (
-        <>
+*/
 
+const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculatePrediction, calculatePrediction, setPropertyCoordinates, handleGetCurrentLocation, addItem, isOpen, removeItem, bedrooms, bathrooms, outsideRef, setDropdownLocationError, setIsSelectedFromDropdown }) => {
+
+    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            setSelectedSuggestionIndex(prevIndex =>
+                prevIndex < address.suggestions.length - 1 ? prevIndex + 1 : prevIndex
+            );
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            setSelectedSuggestionIndex(prevIndex =>
+                prevIndex > 0 ? prevIndex - 1 : prevIndex
+            );
+        } else if (event.key === 'Enter') {
+            event.preventDefault();
+            if (selectedSuggestionIndex !== -1) {
+                const suggestion = address.suggestions[selectedSuggestionIndex];
+                setPropertyCoordinates(suggestion.geometry.coordinates);
+                address.setLocation(suggestion.place_name);
+                setIsSelectedFromDropdown(true);
+                setDropdownLocationError(false);
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (address.show) return;
+        setSelectedSuggestionIndex(-1)
+    }, [address.show])
+    return (
+        <>
             <Flex
                 justifyContent={"space-between"}
                 alignItems={"center"}
@@ -23,7 +59,6 @@ const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculateP
                 boxShadow={"0px 1px 3px -2px rgba(158, 157, 164, 0.49)"}
             >
                 <Flex pos={"relative"}>
-                    {/* @ts-ignore */}
                     <Flex
                         onClick={() => ref?.current?.focus()}
                         cursor="pointer"
@@ -55,8 +90,9 @@ const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculateP
                                         })
                                     }
                                     placeholder="Enter  Address"
+                                    onKeyDown={handleKeyDown}
                                 />
-                                {address.show && location !== "" && (
+                                {address.show && address.location !== "" && (
                                     <Box
                                         ref={outsideRef}
                                         left={0}
@@ -69,38 +105,36 @@ const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculateP
                                         }
                                         borderRadius={"12px"}
                                     >
-                                        {address.suggestions.map((suggestion, index) => {
-                                            return (
-                                                <Flex
-                                                    key={`address-suggestion-${index}`}
-                                                    px={"10px"}
-                                                    _hover={{
-                                                        bg: "#e5e5e5",
-                                                    }}
-                                                    align={"center"}
-                                                    gap=".4rem"
-                                                    fontFamily={"GTRegular"}
-                                                    onClick={() => {
-                                                        setPropertyCoordinates(
-                                                            suggestion.geometry.coordinates
-                                                        );
-                                                        address.setLocation(
-                                                            suggestion.place_name
-                                                        );
-                                                        setIsSelectedFromDropdown(true);
-                                                        setDropdownLocationError(false);
-                                                    }}
-                                                    cursor={"pointer"}
-                                                >
-                                                    <Box>
-                                                        <MapPin />
-                                                    </Box>
-                                                    <Text py=".4rem" key={index}>
-                                                        {suggestion.place_name}
-                                                    </Text>
-                                                </Flex>
-                                            );
-                                        })}
+                                        {address.suggestions.map((suggestion, index) => (
+                                            <Flex
+                                                key={`address-suggestion-${index}`}
+                                                px={"10px"}
+                                                _hover={{
+                                                    bg: "#e5e5e5",
+                                                }}
+                                                align={"center"}
+                                                gap=".4rem"
+                                                fontFamily={"GTRegular"}
+                                                onClick={() => {
+                                                    setPropertyCoordinates(suggestion.geometry.coordinates);
+                                                    address.setLocation(suggestion.place_name);
+                                                    setIsSelectedFromDropdown(true);
+                                                    setDropdownLocationError(false);
+                                                }}
+                                                cursor={"pointer"}
+                                                style={{
+                                                    backgroundColor:
+                                                        selectedSuggestionIndex === index ? '#e5e5e5' : 'transparent',
+                                                }}
+                                            >
+                                                <Box>
+                                                    <MapPin />
+                                                </Box>
+                                                <Text py=".4rem" key={index}>
+                                                    {suggestion.place_name}
+                                                </Text>
+                                            </Flex>
+                                        ))}
                                     </Box>
                                 )}
                             </Box>
@@ -151,7 +185,6 @@ const DesktopSearch = ({ ref, labelStyle, showLoading, address, handleCalculateP
                         </Flex>
                     </Box>
                 </Flex>
-
                 <Button
                     isLoading={showLoading}
                     onClick={handleCalculatePrediction}

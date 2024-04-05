@@ -17,7 +17,7 @@ import { AuthContext } from '../../context/authContext';
 import { useLegacyEffect } from './../../hooks/useEffectLegacy';
 import { getKeys } from "../../Components/MonthlyData";
 import { Map } from "../../Components/Map";
-
+import InvestmentAnalysis from "./../../Components/InvestmentAnalysis";
 // Dynamically importing the components
 const Lottie = dynamic(() => import("lottie-react"));
 const Schedule = dynamic(() => import("../../Components/modals/schedule"));
@@ -300,7 +300,7 @@ const Result: FC<any> = ({ data }) => {
             Download PDF
           </Button>
           <Map compareableProperty={results.comps} results={results} />
-
+          <InvestmentAnalysis results={results} />
           <Box
             marginTop={"40px"}
             paddingBottom={"20px"}
